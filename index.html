@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#10141f">
+  <title>Synapsis — Entrenamiento de razonamiento</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="cabecera">
+    <span class="logo">Synapsis</span>
+    <div class="marcadores" id="marcadores" hidden>
+      <span class="chip" id="chip-nivel">Nivel 1</span>
+      <span class="chip chip-suave" id="chip-progreso">1 / 12</span>
+    </div>
+  </header>
+
+  <main>
+    <!-- Pantalla de inicio -->
+    <section id="pantalla-inicio" class="pantalla">
+      <h1>Entrena tu razonamiento</h1>
+      <p class="descripcion">
+        Matrices visuales, series lógicas, rotación espacial y puzles
+        de piezas.
+        La dificultad sube sin límite mientras sigas acertando: si completas
+        una sesión sin fallar, la siguiente continúa en tu nivel, aunque
+        cierres la aplicación. La sesión termina al primer fallo o tras
+        12 ejercicios.
+      </p>
+      <p id="inicio-progreso" class="progreso-guardado" hidden></p>
+      <button id="btn-comenzar" class="btn-primario">Comenzar</button>
+      <button id="btn-borrar" class="btn-secundario" hidden>Borrar progreso guardado</button>
+    </section>
+
+    <!-- Pantalla de juego -->
+    <section id="pantalla-juego" class="pantalla" hidden>
+      <p id="enunciado" class="enunciado"></p>
+      <div id="zona-principal" class="zona-principal">
+        <canvas id="canvas-principal"></canvas>
+      </div>
+      <p id="feedback" class="feedback" aria-live="polite">&nbsp;</p>
+      <div id="zona-opciones" class="zona-opciones"></div>
+    </section>
+
+    <!-- Pantalla de resumen -->
+    <section id="pantalla-resumen" class="pantalla" hidden>
+      <h1>Fin de la sesión</h1>
+      <div class="resumen-stats">
+        <div class="stat">
+          <span class="stat-valor" id="res-nivel">1</span>
+          <span class="stat-etiqueta">Nivel máximo</span>
+        </div>
+        <div class="stat">
+          <span class="stat-valor stat-record" id="res-record">1</span>
+          <span class="stat-etiqueta">Récord</span>
+        </div>
+        <div class="stat">
+          <span class="stat-valor stat-ok" id="res-aciertos">0</span>
+          <span class="stat-etiqueta">Aciertos</span>
+        </div>
+        <div class="stat">
+          <span class="stat-valor stat-mal" id="res-fallos">0</span>
+          <span class="stat-etiqueta">Fallos</span>
+        </div>
+      </div>
+      <p id="res-mensaje" class="descripcion"></p>
+      <button id="btn-reiniciar" class="btn-primario">Jugar otra sesión</button>
+    </section>
+  </main>
+
+  <!--
+    Orden de carga (scripts clásicos, sin módulos ES, para que funcione
+    también abriendo index.html directamente desde el disco):
+      1. utils.js       — helpers de aleatoriedad y dibujo en canvas
+      2. difficulty.js  — fórmulas de dificultad continua
+      3. storage.js     — persistencia del progreso (localStorage)
+      4. registry.js    — registro central de generadores
+      5. poly.js        — geometría compartida de poliominós (piezas)
+      6. generators/*   — cada tipo de ejercicio se auto-registra
+      7. main.js        — controlador del juego (arranca al final)
+  -->
+  <script src="js/utils.js"></script>
+  <script src="js/difficulty.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/registry.js"></script>
+  <script src="js/poly.js"></script>
+  <script src="js/generators/matrix.js"></script>
+  <script src="js/generators/series.js"></script>
+  <script src="js/generators/rotation.js"></script>
+  <script src="js/generators/lines.js"></script>
+  <script src="js/generators/puzzle.js"></script>
+  <script src="js/generators/assembly.js"></script>
+  <script src="js/generators/cutout.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
