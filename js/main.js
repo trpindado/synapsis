@@ -256,4 +256,12 @@
   estado.record = guardado.record;
   actualizarInicio();
   mostrarPantalla('inicio');
+
+  // PWA: el service worker cachea la app para poder jugar sin conexión.
+  // Solo en https o localhost (abriendo desde file:// no está permitido,
+  // pero el juego funciona igual, simplemente sin caché).
+  if ('serviceWorker' in navigator &&
+      (location.protocol === 'https:' || location.hostname === 'localhost')) {
+    navigator.serviceWorker.register('sw.js');
+  }
 })();
