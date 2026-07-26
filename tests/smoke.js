@@ -32,6 +32,7 @@ const ARCHIVOS = [
   'js/generators/puzzle.js',
   'js/generators/assembly.js',
   'js/generators/cutout.js',
+  'js/generators/silhouettes.js',
 ];
 for (const relativo of ARCHIVOS) {
   const codigo = fs.readFileSync(path.join(RAIZ, relativo), 'utf8');
@@ -122,7 +123,7 @@ function validar(generador, d) {
   for (const opcion of ej.opciones) opcion.dibujar(canvasFalso(), 120);
 }
 
-const ESPERADOS = ['matriz', 'series', 'rotacion', 'lineas', 'piezas', 'ensamblaje', 'recorte'];
+const ESPERADOS = ['matriz', 'series', 'rotacion', 'lineas', 'piezas', 'ensamblaje', 'recorte', 'silueta'];
 const registrados = Synapsis.registry.generadores.map((g) => g.id);
 for (const id of ESPERADOS) {
   if (!registrados.includes(id)) {

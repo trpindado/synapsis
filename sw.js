@@ -29,6 +29,7 @@ const ARCHIVOS = [
   'js/generators/puzzle.js',
   'js/generators/assembly.js',
   'js/generators/cutout.js',
+  'js/generators/silhouettes.js',
   'js/main.js',
   'icons/icon-180.png',
   'icons/icon-192.png',
